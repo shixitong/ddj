@@ -1,0 +1,46 @@
+/******************
+ * 遮罩
+**/
+.haf-body-mask{
+    display: none;
+}
+.haf-body-mask-front {
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+}
+.haf-mask-show {
+    overflow: hidden !important;
+}
+.haf-body-mask-front .haf-mask-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1050;
+    width: auto;
+    height: auto;
+    margin: -20px -40px;
+    max-width: 100px;
+    background: #fff;
+    border: 2px solid #eeeeff;
+}
+.haf-body-mask-front .haf-mask-msg-inner{
+    background: url("images/loading.gif") no-repeat 5px center;
+    padding: 5px 5px 5px 24px;
+    display: inline-block;
+}
+.haf-body-mask-back {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #000000;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}

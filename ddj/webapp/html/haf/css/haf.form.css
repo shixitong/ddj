@@ -1,0 +1,91 @@
+/*html,body{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}*/
+body{
+    font-family: "Microsoft YaHei","sans-serif";
+    overflow-y: scroll;
+    background: #E9EEF6;
+    min-width: 960px;
+}
+/***
+ * 修改bootstrap部分样式
+**/
+body,
+output,
+.form-control{
+    font-size: 12px;
+}
+.input-group-addon{
+    font-size: 14px;
+}
+.form-control,
+.input-group-addon{
+    height: 26px;
+    padding: 3px 8px;
+}
+
+.input-group-addon.select-group-addon{
+    font-size: 12px;
+    cursor: pointer;
+    background: #E9EAF3;
+    padding: 3px 6px;
+}
+
+output,
+.form-horizontal .control-label,
+.form-horizontal .radio,
+.form-horizontal .checkbox,
+.form-horizontal .radio-inline,
+.form-horizontal .checkbox-inline,
+.form-horizontal .form-control-static{
+    padding-top: 5px;
+}
+.form-control[readonly],
+.form-control[disabled]{
+    background-color: #F6F6F6;
+}
+.form-horizontal .control-label {
+    text-align: right;
+}
+.btn{
+    padding: 3px 10px;
+}
+.table.input-table td{
+    padding: 4px 2px;
+}
+.page-header .nav-tabs{margin-top:-25px;}
+.page-header .nav-tabs > li{float:right;}
+
+/* easyui */
+a.l-btn .l-btn-focus{
+    outline: none;
+}
+a.l-btn{
+    color: #6999E0;
+}
+
+/* attachment */
+.attach-list{
+    padding: 6px;
+    display: block;
+}
+.attach-list-item{
+    display: table;
+    line-height: 22px;
+    clear: both;
+}
+.attach-icon{
+    background: url("images/attach.png") no-repeat center;
+    display: table-cell;
+    height: 16px;
+    width: 16px;
+}
+.attach-item{
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.attach-delete{
+    color: red;
+}

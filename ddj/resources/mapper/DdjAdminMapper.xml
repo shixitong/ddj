@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jdy.ddj.dao.DdjAdminDao" >
+  <resultMap id="ddjAdminMap" type="ddj_DdjAdmin" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="aname" property="aname" jdbcType="VARCHAR" />
+    <result column="apassword" property="apassword" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="atype" property="atype" jdbcType="VARCHAR" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="base_table" >
+    ddj.ddj_admin
+  </sql>
+  <sql id="base_column" >
+    id, aname, apassword, name, atype, other, createdate
+  </sql>
+  <sql id="where_clause" >
+    <foreach collection="requestBean.oredCriteria" item="criteria" separator="or" >
+      <if test="criteria.valid" >
+        <trim prefix="(" suffix=")" prefixOverrides="and" >
+          <foreach collection="criteria.criteria" item="criterion" >
+            <choose >
+              <when test="criterion.noValue" >
+                and ${criterion.condition}
+              </when>
+              <when test="criterion.singleValue" >
+                and ${criterion.condition} #{criterion.value}
+              </when>
+              <when test="criterion.betweenValue" >
+                and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+              </when>
+              <when test="criterion.listValue" >
+                and ${criterion.condition}
+                <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  #{listItem}
+                </foreach>
+              </when>
+            </choose>
+          </foreach>
+        </trim>
+      </if>
+    </foreach>
+  </sql>
+  <insert id="save" parameterType="ddj_DdjAdmin" >
+    insert into <include refid="base_table"/> ( <include refid="base_column"/> )values (#{id,jdbcType=VARCHAR}, #{aname,jdbcType=VARCHAR}, #{apassword,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{atype,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <delete id="deleteById" parameterType="String" >
+    DELETE FROM <include refid="base_table"/> WHERE id=#{id}
+  </delete>
+  <delete id="deleteByWhere" parameterType="RequestBean" >
+    DELETE FROM <include refid="base_table"/> <where> <include refid="where_clause"/> </where>
+  </delete>
+  <update id="updateById" parameterType="ddj_DdjAdmin" >
+    UPDATE <include refid="base_table"/> SET aname = #{aname,jdbcType=VARCHAR},apassword = #{apassword,jdbcType=VARCHAR},name = #{name,jdbcType=VARCHAR},atype = #{atype,jdbcType=VARCHAR},other = #{other,jdbcType=VARCHAR} WHERE id = #{id} 
+  </update>
+  <update id="updateByWhere" parameterType="Map" >
+    UPDATE <include refid="base_table"/> 
+    <set >
+      <if test="record.aname != null" >
+        aname = #{record.aname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apassword != null" >
+        apassword = #{record.apassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.atype != null" >
+        atype = #{record.atype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other != null" >
+        other = #{record.other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <where> <include refid="where_clause"/> </where>
+  </update>
+  <select id="count" parameterType="RequestBean" resultType="long" >
+    SELECT count(1) FROM <include refid="base_table"/> <where> <include refid="where_clause"/> </where>
+  </select>
+  <select id="getById" parameterType="String" resultMap="ddjAdminMap" >
+     SELECT <include refid="base_column"/> FROM <include refid="base_table"/> where id=#{id}
+  </select>
+  <select id="getByWhere" parameterType="RequestBean" resultMap="ddjAdminMap" >
+     SELECT <if test="requestBean.distinct" > DISTINCT </if> <include refid="base_column"/> FROM <include refid="base_table"/> <where><include refid="where_clause"/></where><if test="requestBean.orderByClause != null">${requestBean.orderByClause}</if>
+  </select>
+  <select id="findPage" parameterType="RequestBean" resultMap="ddjAdminMap" >
+    SELECT <if test="requestBean.distinct" > DISTINCT </if> <include refid="base_column"/> FROM <include refid="base_table"/> <where> <include refid="where_clause"/> </where><if test="requestBean.orderByClause != null">${requestBean.orderByClause}</if>
+  </select>
+  <update id="updateValuesById" parameterType="ddj_DdjAdmin" >
+    UPDATE <include refid="base_table"/> 
+    <set >
+      <if test="aname != null" >
+        aname = #{aname,jdbcType=VARCHAR},
+      </if>
+      <if test="apassword != null" >
+        apassword = #{apassword,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="atype != null" >
+        atype = #{atype,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+    </set>
+     WHERE id = #{id} 
+  </update>
+  <select id="getByValues" parameterType="ddj_DdjAdmin" resultMap="ddjAdminMap" >
+    SELECT * FROM <include refid="base_table"/> 
+    <where >
+      <if test="aname != null" >
+         AND aname = #{aname,jdbcType=VARCHAR}
+      </if>
+      <if test="apassword != null" >
+         AND apassword = #{apassword,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null" >
+         AND name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="atype != null" >
+         AND atype = #{atype,jdbcType=VARCHAR}
+      </if>
+      <if test="other != null" >
+         AND other = #{other,jdbcType=VARCHAR}
+      </if>
+      <if test="createdate != null" >
+         AND createdate = #{createdate,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,42 @@
+.checkbox_invalid{
+	background:#FFFFEE url('images/checkbox_warning1.png') no-repeat right 2px;
+}
+.checkbox_tip{
+	position:absolute;
+	width:200px;
+	height:auto;
+	display:none;
+	z-index:9900000;
+}
+.checkbox_tip_content{
+	display:inline-block;
+	position:absolute;
+	top:0px;
+	left:10px;
+	padding:3px 5px;
+	border:1px solid #CC9933;
+	line-height:13px;
+	background:#FFFFCC;
+	z-index:9900001;
+	font-size:12px;
+}
+.checkbox_tip_pointer{
+	background:url('images/checkbox_pointer.gif') no-repeat left 1px;
+	display:inline-block;
+	width:10px;
+	height:19px;
+	position:absolute;
+	left:1px;
+	top:0px;
+	z-index:9900002;
+}
+.checkbox_tip_pointer_top{
+	background:url('images/checkbox_pointer_top.gif') no-repeat left top;
+	display:inline-block;
+	width:19px;
+	height:10px;
+	position:absolute;
+	left:2px;
+	top:0px;
+	z-index:9900002;
+}

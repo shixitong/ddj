@@ -1,0 +1,12 @@
+html,body{height:100%;width:100%;overflow:hidden;}
+.loginForm{height:100%;width:100%;overflow:hidden;background:url(images/login/login_bj.jpg) no-repeat center;}
+			
+.wordspace{display:inline-block;width:12px;height:1px;height:auto\9;overflow:hidden;}
+.loginPanel{position:absolute;top:50%;left:50%;margin-left:-395px;margin-top:-145px;width:792px;height:350px;}
+.loginPanel table{position:absolute;top:35px;right:100px;width:220px;table-layout:fixed;}
+.loginPanel .title{width:50px;height:1%;line-height:30px;color:#000;}
+.loginPanel input{width:160px;border:1px solid #ccc;font-weight:bold;font-size:14px;letter-spacing:1px;padding:1px;}
+.loginPanel .copyright{position:absolute;bottom:0px;left:50%;margin-left:-80px;text-align:center;}
+a:link,a:visited,a:active,a:hover{/*hide-focus:expression(this.hideFocus=true);*/color:#333333;text-decoration: none;}
+a.submit{display:inline-block;height:24px;line-height:26px;width:70px;overflow:hidden;background:url(images/login/btn.gif) 0px 0px no-repeat;}
+a.reset{display:inline-block;margin-left:40px;height:24px;line-height:26px;width:70px;overflow:hidden;background:url(images/login/btn.gif) 0px 0px no-repeat;}

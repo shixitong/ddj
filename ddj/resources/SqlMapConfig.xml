@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- mysql方言 -->
+    <properties>
+        <property name="dialect" value="MYSQL"/>
+    </properties>
+    <!-- 命名空间 -->
+    <typeAliases>
+        <typeAlias alias="RequestBean" type="com.jdy.ddj.common.dao.RequestBean"/>
+        <typeAlias alias="ddj_DdjNews" type="com.jdy.ddj.entity.DdjNews"/>
+        <typeAlias alias="ddj_DdjAdmin" type="com.jdy.ddj.entity.DdjAdmin"/>
+
+    </typeAliases>
+
+
+    <plugins>
+        <plugin interceptor="com.jdy.ddj.common.dao.interceptor.PagePlugin">
+            <property name="dialect" value="MYSQL"/>
+            <property name="pageSqlId" value=".*Page"/>
+        </plugin>
+    </plugins>
+
+    <!-- 映射map -->
+    <mappers>
+    </mappers>
+</configuration>

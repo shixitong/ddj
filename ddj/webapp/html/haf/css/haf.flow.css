@@ -1,0 +1,216 @@
+/******************
+ * HAF Flow Form CSS
+*******************/
+/** 流程表单头部工具栏
+ * flow-form-header
+ */
+.flow-form-header{
+    background: #BACADA;
+    border: 0px solid #ddd;
+    margin: 0;
+    padding: 0px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    height: auto;
+}
+.flow-form-header .flow-buttons{
+    padding: 5px 10px;
+    margin: 0 auto;
+    background: #A0B5C9;
+    width: 960px;
+    border-bottom: 0px solid #ddd;
+    height: 38px;
+}
+.flow-form-header .page-header{
+    width: 960px;
+    margin: 0 auto;
+}
+.flow-form-header .page-header h3{
+    padding-left: 15px;
+}
+
+/*.flow-buttons{
+    width: auto;
+    visibility: hidden;
+    height: auto;
+}*/
+
+/** 表单主体背景
+ * flow-form-backdrop
+ */
+.flow-form-backdrop{
+    width: 950px;
+    padding: 0;
+    margin-left: -475px;
+    position: fixed;
+    top: 42px;
+    left: 50%;
+    bottom: 30px;
+    background: #fcfcfc;
+}
+
+/** 表单主体样式
+ * flow-form-content
+ */
+.flow-form-content{
+    background: #fcfcfc;
+    display: table;
+    margin: 42px auto 30px auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    width: 950px;
+}
+.flow-form-content .page-header{
+    margin-bottom: 10px;
+    border-bottom: 0 none;
+}
+.flow-form-content .page-header.pull-top{
+    display: none;
+}
+
+/* flow-form-footer */
+.flow-form-footer{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    left: 0;
+    right:0;
+    bottom: 0;
+    height: auto;
+    background: #BACADA;
+}
+.flow-form-footer > div{
+    padding: 0 20px;
+    margin: 0 auto;
+    width: 960px;
+    height: 25px;
+    line-height: 25px;
+    border-top: 0px solid #fff;
+    background: #A0B5C9;
+}
+.flow-form-footer a.show-footer{
+    position: fixed;
+    left: 5px;
+    bottom: 0;
+    display: none;
+}
+.flow-form-footer a.hide-footer{
+    margin-top: 5px;
+}
+
+.flow-form-content.hide-footer{
+    margin-bottom: 5px;
+}
+.flow-form-backdrop.hide-footer{
+    bottom: 5px;
+}
+
+@media (max-width: 1000px) {
+    .flow-form-content{
+        margin-bottom: 5px;
+    }
+    .flow-form-backdrop{
+        bottom: 5px;
+    }
+    .flow-form-footer > div{
+        display: none;
+    }
+    .flow-form-footer a.show-footer{
+        display: block;
+    }
+}
+
+/* @media */
+@media print{
+    .flow-form-content{
+        margin: 0 !important;
+    }
+    .flow-form-info,
+    .flow-form-content .page-header.pull-top{
+        display: block !important;
+    }
+    table.flow-user-comments {
+        margin-left: 5%;
+        width: 95%;
+    }
+    .flow-form-header,
+    .flow-form-footer,
+    .flow-form-content .page-header .nav,
+    .flow-form-content .btn-group,
+    .flow-form-content .btn,
+    table.flow-user-comments thead{
+        display: none;
+    }
+}
+
+/** 流程历史信息
+ * flow-hi-view
+ */
+.flow-hi-view .nav{
+    background: #EEEEF3;
+    border-bottom: 1px outset #DDDDDD;
+    display: block;
+    font-weight: bold;
+    padding: 3px 10px;
+}
+.flow-hi-view img{
+    max-width: 100%;
+    width: auto;
+    margin: 5px auto 10px auto;
+    display: none;
+}
+.flow-hi-view .loading-img{
+    background: url("images/loading.gif") no-repeat center center;
+    margin: 20px auto;
+    height: 20px;
+    width: 30px;
+}
+.flow-hi-view .flow-hi-table{
+    margin-bottom: 5px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.flow-hi-view .flow-hi-table > thead > tr > td{
+    background: #f1f1f5;
+}
+.flow-hi-view .flow-hi-table td{
+    border: 0;
+}
+.flow-hi-view .flow-hi-table .flow-user-row td{
+    background: #f6f6f9;
+    border-top:1px solid #e3e3e6;
+}
+.flow-hi-view .flow-hi-table .flow-comment-row td{
+    padding: 5px 10px 10px 10px;
+}
+.flow-hi-view p{
+    margin: 10px;
+}
+/**
+ * haf-flow-btn @media */
+/*
+@media (max-width: 800px) {
+    div.flow-btn-view{
+        display: none !important;
+    }
+}
+@media (max-width: 600px) {
+    div.flow-btn-jump,
+    div.flow-btn-manage,
+    div.flow-btn-replace,
+    div.flow-btn-stop,
+    div.flow-btn-communicate,
+    div.flow-btn-print,
+    div.flow-btn-notify,
+    div.flow-btn-append,
+    div.flow-btn-authorize,
+    div.flow-btn-handover,
+    div.flow-btn-deliver{
+        display: none !important;
+    }
+}*/

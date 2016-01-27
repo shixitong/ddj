@@ -1,0 +1,81 @@
+/*** 遮罩 ***/
+.haf-body-mask{display:none;}
+.haf-body-mask-front{opacity:1;position:fixed;top:0;right:0;bottom:0;left:0;z-index:1040;}
+.haf-mask-show{overflow:hidden !important;}
+.haf-body-mask-front .haf-mask-msg{position:absolute;top:50%;left:50%;z-index:1050;width:auto;height:auto;margin:-20px -40px;max-width:100px;background:#fff;border:2px solid #eeeeff;}
+.haf-body-mask-front .haf-mask-msg-inner{background:url("images/loading.gif") no-repeat 5px center;padding:5px 5px 5px 24px;display:inline-block;}
+.haf-body-mask-back{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1030;background-color:#000000;opacity:0.5;filter:alpha(opacity=50);}
+/**** haf dialog ****/
+.modal-dialog.haf-dialog{margin:30px auto;}
+.modal-dialog.haf-dialog .modal-body{padding-bottom:0px;}
+/* person select dialog */
+/*person-select{width:700px;margin:30px auto;display:table;}*/
+.modal-dialog .person-select{border:0;margin:0 auto;padding:0;width:auto;height:auto;border-collapse:collapse;}
+.modal-dialog .person-select > tbody > tr > td{border:4px solid #eee;padding:0;margin:0;}
+.modal-dialog .person-select div[haf-comp-id="deptTree"]{overflow:auto;width:160px;height:300px;margin-right:0px;padding:5px}
+.modal-dialog .person-select div[haf-comp-id="deptTreeBtns"]{padding:2px 5px;color:#ddeeff;background:#f3f3f9;line-height:18px;border-bottom:1px solid #ddd;}
+.modal-dialog .person-select div[haf-comp-id="deptTree"] > div{width:auto;display:inline-block;}
+.modal-dialog .person-select div[haf-comp-id="personList"]{width:360px;height:323px;margin:0 0px}
+.modal-dialog .person-select div[haf-comp-id="personSelected"]{width:130px;height:300px;margin-left:0px;overflow:auto;}
+.modal-dialog .person-select div[haf-comp-id="personSelected"] span{display:block;width:100%;line-height:18px;padding:1px 5px;border-bottom:1px dotted #fff;cursor:default;}
+.modal-dialog .person-select div[haf-comp-id="personSelected"] span:hover{background:#ddeeff;}
+.modal-dialog .person-select div[haf-comp-id="personSelected"] span.selected{background:#c9d9f9;}
+.modal-dialog .person-select div[haf-comp-id="personSelectedBtns"]{padding:2px;color:#ddeeff;background:#f3f3f9;line-height:18px;border-top:1px solid #ddd;}
+.modal-dialog .person-select div[haf-comp-id="personSelectedBtns"] a{margin:auto 1px;}
+/* flow confirm dialog */
+.modal-dialog .flow-confirm div[haf-comp-id="commentsAdd"] span,.modal-dialog .flow-confirm div[haf-comp-id="tempComments"] span{display:inline-block;padding:2px 5px;margin:3px;border:1px solid #ddd;cursor:pointer;background-color:#eee;color:#993333;border-radius:3px;}
+.modal-dialog .flow-confirm div[haf-comp-id="commentsAdd"] span:hover,.modal-dialog .flow-confirm div[haf-comp-id="tempComments"] span:hover{color:#6666ee;}
+/****************** * HAF Flow Form CSS*******************/
+/** 流程表单头部工具栏 * flow-form-header */
+.flow-form-header{background:#BACADA;border:0px solid #ddd;margin:0;padding:0px;width:100%;position:fixed;top:0;left:0;z-index:3;height:auto;}
+.flow-form-header .flow-buttons{padding:5px 10px;margin:0 auto;background:#A0B5C9;width:960px;border-bottom:0px solid #ddd;height:38px;}
+.flow-form-header .page-header{width:960px;margin:0 auto;}
+.flow-form-header .page-header h3{padding-left:15px;}
+/*.flow-buttons{width:auto;visibility:hidden;height:auto;}*/
+/** 表单主体背景 * flow-form-backdrop */
+.flow-form-backdrop{width:950px;padding:0;margin-left:-475px;position:fixed;top:42px;left:50%;bottom:30px;background:#fcfcfc;}
+/** 表单主体样式 * flow-form-content */
+.flow-form-content{background:#fcfcfc;display:table;margin:42px auto 30px auto;padding-left:15px;padding-right:15px;position:relative;width:950px;}
+.flow-form-content .page-header{margin-bottom:10px;border-bottom:0 none;}
+.flow-form-content .page-header.pull-top{display:none;}
+/* flow-form-footer */
+.flow-form-footer{border:0;margin:0;padding:0;position:fixed;left:0;right:0;bottom:0;height:auto;background:#BACADA;}
+.flow-form-footer > div{padding:0 20px;margin:0 auto;width:960px;height:25px;line-height:25px;border-top:0px solid #fff;background:#A0B5C9;}
+.flow-form-footer a.show-footer{position:fixed;left:5px;bottom:0;display:none;}
+.flow-form-footer a.hide-footer{margin-top:5px;}
+.flow-form-content.hide-footer{margin-bottom:5px;}
+.flow-form-backdrop.hide-footer{bottom:5px;}
+@media (max-width:1000px){.flow-form-content{margin-bottom:5px;}
+    .flow-form-backdrop{bottom:5px;}
+    .flow-form-footer > div{display:none;}
+    .flow-form-footer a.show-footer{display:block;}
+}
+/* @media */
+@media print{.flow-form-content{margin:0 !important;}
+    .flow-form-info,.flow-form-content .page-header.pull-top{display:block !important;}
+    table.flow-user-comments{margin-left:5%;width:95%;}
+    .flow-form-header,.flow-form-footer,.flow-form-content .page-header .nav,.flow-form-content .btn-group,.flow-form-content .btn,table.flow-user-comments thead{display:none;}
+}
+/** 流程历史信息 * flow-hi-view */
+.flow-hi-view .nav{background:#EEEEF3;border-bottom:1px outset #DDDDDD;display:block;font-weight:bold;padding:3px 10px;}
+.flow-hi-view img{max-width:100%;width:auto;margin:5px auto 10px auto;display:none;}
+.flow-hi-view .loading-img{background:url("images/loading.gif") no-repeat center center;margin:20px auto;height:20px;width:30px;}
+.flow-hi-view .flow-hi-table{margin-bottom:5px;word-break:break-all;word-wrap:break-word;}
+.flow-hi-view .flow-hi-table > thead > tr > td{background:#f1f1f5;}
+.flow-hi-view .flow-hi-table td{border:0;}
+.flow-hi-view .flow-hi-table .flow-user-row td{background:#f6f6f9;border-top:1px solid #e3e3e6;}
+.flow-hi-view .flow-hi-table .flow-comment-row td{padding:5px 10px 10px 10px;}
+.flow-hi-view p{margin:10px;}
+/*html,body{height:100%;padding:0;margin:0;}*/
+body{font-family:"Microsoft YaHei","sans-serif";overflow-y:scroll;background:#E9EEF6;min-width:960px;}
+/*** * 修改bootstrap部分样式**/
+body,output,.form-control{font-size:12px;}
+.input-group-addon{font-size:14px;cursor:default;}
+.form-control,.input-group-addon{height:26px;padding:3px 8px;}
+output,.form-horizontal .control-label,.form-horizontal .radio,.form-horizontal .checkbox,.form-horizontal .radio-inline,.form-horizontal .checkbox-inline,.form-horizontal .form-control-static{padding-top:5px;}
+.form-control[readonly],.form-control[disabled]{background-color:#F6F6F6;}
+.form-horizontal .control-label{text-align:right;}
+.btn{padding:3px 10px;}
+.table.input-table td{padding:4px 2px;}
+.page-header .nav-tabs{margin-top:-25px;}
+.page-header .nav-tabs > li{float:right;}

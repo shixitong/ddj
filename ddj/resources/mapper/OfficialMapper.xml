@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jdy.ddj.dao.OfficialDao" >
+  <resultMap id="officialMap" type="com.jdy.ddj.entity.Official" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="PHONOS" property="phonos" jdbcType="VARCHAR" />
+    <result column="VERSION_IOS" property="versionIos" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="base_table" >
+    ddj.official
+  </sql>
+  <sql id="base_column" >
+    ID, TYPE, PHONOS, VERSION_IOS, VERSION, CONTENT
+  </sql>
+  <sql id="where_clause" >
+    <foreach collection="requestBean.oredCriteria" item="criteria" separator="or" >
+      <if test="criteria.valid" >
+        <trim prefix="(" suffix=")" prefixOverrides="and" >
+          <foreach collection="criteria.criteria" item="criterion" >
+            <choose >
+              <when test="criterion.noValue" >
+                and ${criterion.condition}
+              </when>
+              <when test="criterion.singleValue" >
+                and ${criterion.condition} #{criterion.value}
+              </when>
+              <when test="criterion.betweenValue" >
+                and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+              </when>
+              <when test="criterion.listValue" >
+                and ${criterion.condition}
+                <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  #{listItem}
+                </foreach>
+              </when>
+            </choose>
+          </foreach>
+        </trim>
+      </if>
+    </foreach>
+  </sql>
+  <insert id="save" parameterType="com.jdy.ddj.entity.Official" >
+    insert into <include refid="base_table"/> ( <include refid="base_column"/> )values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{phonos,jdbcType=VARCHAR}, #{versionIos,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARBINARY})
+  </insert>
+  <delete id="deleteById" parameterType="String" >
+    DELETE FROM <include refid="base_table"/> WHERE id=#{id}
+  </delete>
+  <delete id="deleteByWhere" parameterType="RequestBean" >
+    DELETE FROM <include refid="base_table"/> <where> <include refid="where_clause"/> </where>
+  </delete>
+  <update id="updateById" parameterType="com.jdy.ddj.entity.Official" >
+    UPDATE <include refid="base_table"/> SET TYPE = #{type,jdbcType=VARCHAR},PHONOS = #{phonos,jdbcType=VARCHAR},VERSION_IOS = #{versionIos,jdbcType=VARCHAR},VERSION = #{version,jdbcType=VARCHAR},CONTENT = #{content,jdbcType=LONGVARBINARY} WHERE id = #{id} 
+  </update>
+  <update id="updateByWhere" parameterType="Map" >
+    UPDATE <include refid="base_table"/> 
+    <set >
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phonos != null" >
+        PHONOS = #{record.phonos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.versionIos != null" >
+        VERSION_IOS = #{record.versionIos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        VERSION = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        CONTENT = #{record.content,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <where> <include refid="where_clause"/> </where>
+  </update>
+  <select id="count" parameterType="RequestBean" resultType="long" >
+    SELECT count(1) FROM <include refid="base_table"/> <where> <include refid="where_clause"/> </where>
+  </select>
+  <select id="getById" parameterType="String" resultMap="officialMap" >
+     SELECT <include refid="base_column"/> FROM <include refid="base_table"/> where id=#{id}
+  </select>
+  <select id="getByWhere" parameterType="RequestBean" resultMap="officialMap" >
+     SELECT <if test="requestBean.distinct" > DISTINCT </if> <include refid="base_column"/> FROM <include refid="base_table"/> <where><include refid="where_clause"/></where><if test="requestBean.orderByClause != null">${requestBean.orderByClause}</if>
+  </select>
+  <select id="findPage" parameterType="RequestBean" resultMap="officialMap" >
+    SELECT <if test="requestBean.distinct" > DISTINCT </if> <include refid="base_column"/> FROM <include refid="base_table"/> <where> <include refid="where_clause"/> </where><if test="requestBean.orderByClause != null">${requestBean.orderByClause}</if>
+  </select>
+  <update id="updateValuesById" parameterType="com.jdy.ddj.entity.Official" >
+    UPDATE <include refid="base_table"/> 
+    <set >
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="phonos != null" >
+        PHONOS = #{phonos,jdbcType=VARCHAR},
+      </if>
+      <if test="versionIos != null" >
+        VERSION_IOS = #{versionIos,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+     WHERE id = #{id} 
+  </update>
+  <select id="getByValues" parameterType="com.jdy.ddj.entity.Official" resultMap="officialMap" >
+    SELECT * FROM <include refid="base_table"/> 
+    <where >
+      <if test="type != null" >
+         AND TYPE = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="phonos != null" >
+         AND PHONOS = #{phonos,jdbcType=VARCHAR}
+      </if>
+      <if test="versionIos != null" >
+         AND VERSION_IOS = #{versionIos,jdbcType=VARCHAR}
+      </if>
+      <if test="version != null" >
+         AND VERSION = #{version,jdbcType=VARCHAR}
+      </if>
+      <if test="content != null" >
+         AND CONTENT = #{content,jdbcType=LONGVARBINARY}
+      </if>
+    </where>
+  </select>
+</mapper>

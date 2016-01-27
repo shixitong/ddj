@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jdy.ddj.dao.DdjNewsDao" >
+    <resultMap id="ddjNewsMap" type="ddj_DdjNews" >
+        <result column="TYPE" property="type" jdbcType="VARCHAR" />
+        <result column="TITLE" property="title" jdbcType="VARCHAR" />
+        <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+        <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+        <result column="URL" property="url" jdbcType="VARCHAR" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+        <result column="DETAIL" property="detail" jdbcType="LONGVARBINARY" />
+    </resultMap>
+    <sql id="base_table" >
+    ddj.ddj_news
+  </sql>
+    <sql id="base_column" >
+    ID, TYPE, TITLE, REMARK, PHOTO, URL, CREATE_TIME, DETAIL
+  </sql>
+    <sql id="where_clause" >
+        <foreach collection="requestBean.oredCriteria" item="criteria" separator="or" >
+            <if test="criteria.valid" >
+                <trim prefix="(" suffix=")" prefixOverrides="and" >
+                    <foreach collection="criteria.criteria" item="criterion" >
+                        <choose >
+                            <when test="criterion.noValue" >
+                                and ${criterion.condition}
+                            </when>
+                            <when test="criterion.singleValue" >
+                                and ${criterion.condition} #{criterion.value}
+                            </when>
+                            <when test="criterion.betweenValue" >
+                                and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                            </when>
+                            <when test="criterion.listValue" >
+                                and ${criterion.condition}
+                                <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    #{listItem}
+                                </foreach>
+                            </when>
+                        </choose>
+                    </foreach>
+                </trim>
+            </if>
+        </foreach>
+    </sql>
+    <insert id="save" parameterType="ddj_DdjNews" >
+        insert into <include refid="base_table"/> ( <include refid="base_column"/> )values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{detail,jdbcType=LONGVARBINARY})
+    </insert>
+    <delete id="deleteById" parameterType="String" >
+        DELETE FROM <include refid="base_table"/> WHERE id=#{id}
+    </delete>
+    <delete id="deleteByWhere" parameterType="RequestBean" >
+        DELETE FROM <include refid="base_table"/> <where> <include refid="where_clause"/> </where>
+    </delete>
+    <update id="updateById" parameterType="ddj_DdjNews" >
+        UPDATE <include refid="base_table"/> SET TYPE = #{type,jdbcType=VARCHAR},TITLE = #{title,jdbcType=VARCHAR},REMARK = #{remark,jdbcType=VARCHAR},PHOTO = #{photo,jdbcType=VARCHAR},URL = #{url,jdbcType=VARCHAR},CREATE_TIME = #{createTime,jdbcType=VARCHAR},DETAIL = #{detail,jdbcType=LONGVARBINARY} WHERE id = #{id}
+    </update>
+    <update id="updateByWhere" parameterType="Map" >
+        UPDATE <include refid="base_table"/>
+        <set >
+            <if test="record.type != null" >
+                TYPE = #{record.type,jdbcType=VARCHAR},
+            </if>
+            <if test="record.title != null" >
+                TITLE = #{record.title,jdbcType=VARCHAR},
+            </if>
+            <if test="record.remark != null" >
+                REMARK = #{record.remark,jdbcType=VARCHAR},
+            </if>
+            <if test="record.photo != null" >
+                PHOTO = #{record.photo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.url != null" >
+                URL = #{record.url,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null" >
+                CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.detail != null" >
+                DETAIL = #{record.detail,jdbcType=LONGVARBINARY},
+            </if>
+        </set>
+        <where> <include refid="where_clause"/> </where>
+    </update>
+    <select id="count" parameterType="RequestBean" resultType="long" >
+        SELECT count(1) FROM <include refid="base_table"/> <where> <include refid="where_clause"/> </where>
+    </select>
+    <select id="getById" parameterType="String" resultMap="ddjNewsMap" >
+        SELECT <include refid="base_column"/> FROM <include refid="base_table"/> where id=#{id}
+    </select>
+    <select id="getByWhere" parameterType="RequestBean" resultMap="ddjNewsMap" >
+        SELECT <if test="requestBean.distinct" > DISTINCT </if> <include refid="base_column"/> FROM <include refid="base_table"/> <where><include refid="where_clause"/></where><if test="requestBean.orderByClause != null">${requestBean.orderByClause}</if>
+    </select>
+    <select id="findPage" parameterType="RequestBean" resultMap="ddjNewsMap" >
+        SELECT <if test="requestBean.distinct" > DISTINCT </if> <include refid="base_column"/> FROM <include refid="base_table"/> <where> <include refid="where_clause"/> </where><if test="requestBean.orderByClause != null">${requestBean.orderByClause}</if>
+    </select>
+    <update id="updateValuesById" parameterType="ddj_DdjNews" >
+        UPDATE <include refid="base_table"/>
+        <set >
+            <if test="type != null" >
+                TYPE = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null" >
+                TITLE = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null" >
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="photo != null" >
+                PHOTO = #{photo,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                URL = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="detail != null" >
+                DETAIL = #{detail,jdbcType=LONGVARBINARY},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <select id="getByValues" parameterType="ddj_DdjNews" resultMap="ddjNewsMap" >
+        SELECT * FROM <include refid="base_table"/>
+        <where >
+            <if test="type != null" >
+                AND TYPE = #{type,jdbcType=VARCHAR}
+            </if>
+            <if test="title != null" >
+                AND TITLE = #{title,jdbcType=VARCHAR}
+            </if>
+            <if test="remark != null" >
+                AND REMARK = #{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="photo != null" >
+                AND PHOTO = #{photo,jdbcType=VARCHAR}
+            </if>
+            <if test="url != null" >
+                AND URL = #{url,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null" >
+                AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+            </if>
+            <if test="detail != null" >
+                AND DETAIL = #{detail,jdbcType=LONGVARBINARY}
+            </if>
+        </where>
+    </select>
+</mapper>

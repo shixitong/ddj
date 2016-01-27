@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+	 <!--  <classPathEntry  location="C:\Documents and Settings\Administrator\git\ddj\ddjtest\webapp\WEB-INF\lib\mysql-connector-java-5.1.9.jar"/>  -->
+    <classPathEntry  location="C:\Users\john\git\ddj\ddjtest\webapp\WEB-INF\lib\mysql-connector-java-5.1.9.jar"/> 
+  <context id="context1" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/ddj" userId="root" password="root" />
+    <javaModelGenerator targetPackage="com.jdy.ddj.entity" targetProject="ddj/src" />
+    <sqlMapGenerator targetPackage="mapper" targetProject="ddj/resources" />
+    <javaClientGenerator targetPackage="com.jdy.ddj.dao" targetProject="ddj/src" type="XMLMAPPER" />
+      <!--	<table tableName="ddj_area" domainObjectName="DdjArea" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+   	<table tableName="ddj_bjd" domainObjectName="DdjBjd" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+   	 <table tableName="ddj_chat" domainObjectName="DdjChat" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>   
+   	<table tableName="ddj_ckb" domainObjectName="DdjCkb" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+  	<table tableName="ddj_company" domainObjectName="DdjCompany" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+   	<table tableName="ddj_jgd" domainObjectName="DdjJgd" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  	-->
+   <!-- 	<table tableName="ddj_jgd_jchxq" domainObjectName="DdjJgdJchxq" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+     <table tableName="ddj_jgd_res" domainObjectName="DdjJgdRes" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+   	<table tableName="ddj_kh_cj" domainObjectName="DdjKhCj" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+   	<table tableName="ddj_pfb" domainObjectName="DdjPfb" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+   	<table tableName="ddj_res" domainObjectName="DdjRes" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>    
+   	<table tableName="ddj_sj_khck" domainObjectName="DdjSjKhck" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>    
+   	<table tableName="ddj_user" domainObjectName="DdjUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>    
+   	<table tableName="ddj_zdb" domainObjectName="DdjZdb" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>    
+   
+   	<table tableName="ddj_jgd" domainObjectName="DdjJgd" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+   	 <table tableName="ddj_zdb" domainObjectName="DdjZdb" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+ 	 -->
+ 	 <table tableName="ddj_zdb" domainObjectName="DdjZdb" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+ 	
+  </context>
+ 
+</generatorConfiguration>

@@ -1,0 +1,105 @@
+.content{
+    padding: 3px;
+    border: 0px;
+    /*overflow-y: scroll;
+    overflow-x: auto;*/
+}
+.content form{padding:0px;margin:0px;}
+.combo-p .panel-body{overflow: auto !important;}
+
+.c-data-panel{border:0px;padding: 0px;}
+.c-btn-panel{padding:1px 10px;background:#F0F0F0;}
+.c-blank2px{clear:both;border:0px;line-height:2px;;height:2px;padding-top:-10px;}
+
+.c-atable {
+    width: 700px;
+    font-size: 12px;
+    /*color: #03386C;*/
+    border-collapse:  collapse;
+    border-spacing: 0;
+    border: 0px solid #cdcdcd;
+    margin: 6px 0px;
+}
+.c-atable th {
+    font-weight: bold;
+    text-align: left;
+    background-color: #D0E0F4;
+    padding: 2px 5px;
+    border: 1px solid #cdcdcd;
+}
+.c-atable td {
+    padding: 3px 0px;
+    border: 0px solid #cdcdcd;
+}
+.c-atable td.c-label-td {
+    padding-left: 5px;
+    /*background-color: #E0EAF4;*/
+    width: 120px;
+    text-align: center;
+}
+.c-atable td.c-info-td {
+    /*background-color: white;*/
+    text-align: left;
+}
+.c-atext{
+    background-color: #FFFFFF;
+    border: 1px solid #B5B8C8;
+    padding: 1px 2px;
+    vertical-align: middle;
+}
+.c-readonly{
+    background-color: #F7F7F7 !important;
+    color: #676767;
+}
+input.c-atext{
+    width: 80%;
+    height: 20px;
+    line-height: 18px;
+}
+textarea.c-atext{
+    width: 95%;
+    height: 50px;
+    overflow-y: auto;
+    line-height: 18px !important;
+}
+.c-select{
+    background-color: #FFFFFF;
+    border: 1px solid #B5B8C8;
+    padding: 2px;
+    height: 22px;
+}
+.c-label-td .red-star{
+    color: #EE0000;
+    margin-right: 2px;
+}
+.c-label-td label{
+    float: right;
+    margin-right: 8px;
+}
+.width30{width:30% !important}
+.width40{width:40% !important}
+.width60{width:60% !important}
+.width80{width:80% !important}
+.width85{width:85% !important}
+.width90{width:90% !important}
+.width95{width:95% !important}
+.width99{width:99% !important}
+.padding10{padding:10px !important;}
+
+.content .panel-body .panel .panel-header{width: auto !important;}
+.content .panel-body .panel .panel-body{width: auto !important;}
+/*.content .panel{width:100% !important;}*/
+
+.attach-list{
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1px 2px;
+}
+.attach-list a{
+    color: #3366ff;
+}
+.attach-list a:hover{
+    color: #EE3333;
+    text-decoration: underline;
+}

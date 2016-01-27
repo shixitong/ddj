@@ -1,0 +1,229 @@
+.noscroll{
+    overflow: hidden;
+}
+/*Layout - 框架内窗口（表单）*/
+.frm-form{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+/*Layout - 框架外（独立）窗口（表单）*/
+.sep-form{
+    width: 100%;
+    text-align: center;
+}
+.sep-form .main{
+	width: 80%;
+	min-width: 950px;
+	margin: 0 auto;
+	text-align: left;
+}
+.sep-form .top{
+	height: 65px;
+	width: 100%;
+	background: url(images/top_bg.jpg) repeat-x;
+	border-bottom: 3px solid #CC0000;
+	color: #555;
+}
+.sep-form .top img{
+	border: 0px;
+	float: left;
+	height: 100%;
+}
+.sep-form .top .right{
+	width: 55%;
+	float: right;
+	text-align: right;
+	padding-right: 10px;
+	line-height: 25px;
+}
+.sep-form .top .right div{
+	float: right;
+	margin-left: 20px;
+	max-width: 150px;
+	overflow: hidden;
+	white-space: nowrap;
+	-o-text-overflow: ellipsis; 
+	text-overflow: ellipsis;
+}
+.sep-form .center{
+	/*width: 100%;*/
+	border-color: #ddd;
+	border-style: solid;
+	border-width: 3px 5px;
+}
+.sep-form .center .toolbar{
+	position: relative;
+	background: url(images/toolbar.png) repeat-x;
+	height: 32px;
+	line-height: 31px;
+	/*border: 1px solid #f0f0f0;*/
+	color: #555;
+}
+.sep-form .center .toolbar .title{
+	width: auto;
+	min-width: 150px;
+	max-width: 285px;
+	height: 32px;
+	line-height: 30px;
+	font-weight: bold;
+	font-size: 14px;
+	background: url(images/title.png) no-repeat top right;
+	white-space: nowrap;
+	overflow: hidden;
+	-o-text-overflow: ellipsis; 
+	text-overflow: ellipsis;
+	display: block;
+	float: left;
+	padding: 0 30px 0 10px;
+}
+.sep-form .center .toolbar .buttons{
+	display: block;
+	float: right;
+	margin-right: 10px;
+}
+.sep-form .center .toolbar button, .center .toolbar .button {
+	height: 22px;
+	line-height: 20px;
+	background: url(images/button1.png) repeat-x;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	color: #708080;
+	cursor: pointer;
+	border: 1px solid #BBBBCC;
+}
+.sep-form .center .content{
+	min-height: 300px;
+	overflow: visible;
+	padding: 3px 5px 5px 5px;
+}
+
+/*Form Element*/
+table.fm-gtable {
+    width: 100%;
+    border-collapse:  collapse;
+    border-spacing: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+.fm-gtable td{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.tborder-l{
+    border-left: 1px solid #E5E5EE;
+}
+.tborder-r{
+    border-right: 1px solid #E5E5EE;
+}
+.tborder-t{
+    border-top: 1px solid #E5E5EE;
+}
+.tborder-b{
+    border-bottom: 1px solid #E5E5EE;
+}
+table.fm-atable {
+    width: 100%;
+    /*color: #03386C;*/
+    border-collapse:  collapse;
+    border-spacing: 0;
+    border: 1px solid #E5E5EE;
+    margin: 0;
+    /*padding: 0;*/
+}
+.fm-atable th,.fm-atable td{
+    font-weight: normal;
+    font-size: 12px;
+    /*line-height: 25px;*/
+    border: 1px solid #E5E5EE;
+    padding: 3px 0px;
+}
+.fm-atable th {
+    text-align: center;
+    background-color: #f9f9ff;
+    text-align: center;
+}
+.fm-atable td {
+    /*padding: 0px;*/
+    text-align: left;
+}
+.fm-atable tr.caption td,.fm-atable tr.caption th{
+    font-weight: bold;
+    padding: 5px 0px 3px 5px;
+    background-color: #EFEFF5;
+}
+table.span1 th{
+    width: 23%;
+}
+table.span1 td{
+    width: 77%;
+}
+table.span2 th{
+    width: 18%;
+}
+table.span2 td{
+    width: 32%;
+}
+table.span3 th{
+    width: 13%;
+}
+table.span3 td{
+    width: 20%;
+}
+table.no-border{
+    border: 0 !important;
+}
+table.no-border td,table.no-border th,table.no-inborder td,table.no-inborder th{
+    border: 0 !important;
+}
+table.no-bgcolor{
+    background: transparent !important;
+}
+table.no-bgcolor th{
+    background: transparent !important;
+}
+/*文本框样式*/
+.fm-atable td input[type='text'],.fm-atable td select,.fm-atable td textarea{
+    /*min-width: 65%;
+    max-width: 99%;*/
+    width: 90%;
+    background: transparent;
+    border: 1px solid #BCBCCC;
+    padding: 2px;
+    color: #333;
+}
+.fm-input{
+    background: transparent;
+    border: 1px solid #BCBCCC;
+    padding: 2px;
+    color: #333;
+}
+.fm-readonly{
+    background: #FAFAFE;
+    border: 1px solid #BCBCCC;
+    padding: 2px;
+    color: #777;
+}
+/*保持easyui原样式*/
+.fm-atable td .combo-text,.fm-atable td .spinner-text {
+    border: 0 none !important;
+    padding: 0 !important;
+}
+/* extend */
+.fm-imglinks a.l-btn-plain {
+    padding-right: 2px !important;
+}
+.fm-imglinks a.l-btn {
+    height: 20px !important;
+}
+.fm-imglinks a.l-btn-plain span.l-btn-left {
+    padding-left: 2px !important;
+}
+.red-star{
+    color: red;
+    margin-right: 5px;
+}
