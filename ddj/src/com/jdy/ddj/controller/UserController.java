@@ -2516,22 +2516,30 @@ public class UserController {
 						queryzdb.setCjbh(Long.valueOf(userid));
 					}
 				}
-				List<DdjJgd> jgdList=jgdService.getByValues(queryJgd);
-				// 输出json对象
 				JSONObject object = new JSONObject();
-				double useTotal = 0;
-				for (DdjJgd ddjOrder : jgdList) {
-					useTotal += ddjOrder.getTotalprice();
+				List<DdjJgd> jgdList=jgdService.getByValues(queryJgd);
+				if(null!=jgdList){
+					// 输出json对象
+					double useTotal = 0;
+					for (DdjJgd ddjOrder : jgdList) {
+						useTotal += ddjOrder.getTotalprice();
+					}
+					double payTotal = 0;
+					List<DdjZdb> zdblist = zdbService.getByValues(queryzdb);
+					for(DdjZdb ddjZdb : zdblist){
+						payTotal+=ddjZdb.getPayprice();
+					}
+					// 总价钱
+					object.put("totalprice", (useTotal-payTotal) + "");
+					// 总重量
+					commonResult.setResult(object);
 				}
-				double payTotal = 0;
-				List<DdjZdb> zdblist = zdbService.getByValues(queryzdb);
-				for(DdjZdb ddjZdb : zdblist){
-					payTotal+=ddjZdb.getPayprice();
+				else{
+					// 总价钱
+					object.put("totalprice", "");
+					// 总重量
+					commonResult.setResult(object);
 				}
-				// 总价钱
-				object.put("totalprice", (useTotal-payTotal) + "");
-				// 总重量
-				commonResult.setResult(object);
 			} else {
 				commonResult.setCode(XboxUtils.STATUS_ERROR);
 				commonResult.setMessage("缺少参数");
