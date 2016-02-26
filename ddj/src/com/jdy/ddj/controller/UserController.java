@@ -2413,7 +2413,7 @@ public class UserController {
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("gdid", ddjOrder.getGdid());
 					jsonObject.put("totalPrices", ddjOrder.getTotalprice());
-					jsonObject.put("cssj", ddjOrder.getCssj());
+					jsonObject.put("cssj", DateUtils.getLongDateStr(ddjOrder.getCssj()));
 
 					useTotal += ddjOrder.getTotalprice();
 					int quantitytype = ddjOrder.getQuantitytype();
