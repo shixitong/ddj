@@ -161,22 +161,22 @@
         SELECT * FROM ddj_zdb
         <where>
        <if test="khbh != null">
-        khbh = #{khbh,jdbcType=BIGINT}
+        and khbh = #{khbh,jdbcType=BIGINT}
       </if>
       <if test="cjbh != null">
-        cjbh = #{cjbh,jdbcType=BIGINT}
+        and cjbh = #{cjbh,jdbcType=BIGINT}
       </if>
       <if test="paytype != null">
-        paytype = #{paytype,jdbcType=VARCHAR}
+        and paytype = #{paytype,jdbcType=VARCHAR}
       </if>
       <if test="payprice != null">
-        payprice = #{payprice,jdbcType=DOUBLE}
+        and payprice = #{payprice,jdbcType=DOUBLE}
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=SMALLINT}
+        and status = #{status,jdbcType=SMALLINT}
       </if>
       <if test="createtime != null">
-        createtime = #{createtime,jdbcType=DATE}
+        and createtime = #{createtime,jdbcType=DATE}
       </if>
         </where>
     </select>

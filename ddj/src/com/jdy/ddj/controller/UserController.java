@@ -2362,7 +2362,7 @@ public class UserController {
 	/**
 	 * 
 	 * 
-	 * 查询用户这个月总金额和总重量
+	 * 查询客户这个月和某个商家来往的账单列表
 	 * @param response
 	 * @param userid
 	 * @param type
@@ -2374,6 +2374,7 @@ public class UserController {
 	 */
 	@RequestMapping("/getMoney.do")
 	public void getMoney(HttpServletResponse response, @RequestParam(value = "userid", required = false) String userid,
+			@RequestParam(value = "userid_sj", required = false) String userid_sj,
 			@RequestParam(value = "type", required = false) String type,
 			@RequestParam(value = "year", required = false) String year,
 			@RequestParam(value = "month", required = false) String month, int page, int rows) {
@@ -2382,7 +2383,10 @@ public class UserController {
 			if (StringUtils.isNotEmpty(userid)) {
 
 				Criteria criteria = new Criteria();
-				criteria.addCriterion(new Criterion(" khid = " + userid + " or cjid= "+userid+" "));
+				criteria.addCriterion(new Criterion(" khid = " + userid ));
+				if(StringUtils.isNotEmpty(userid_sj)){
+					criteria.addCriterion(new Criterion(" cjid= "+userid_sj+" "));
+				}
 				//criteria.addCriterion(new Criterion(" cssj < now() "));
 				if (StringUtils.isNotEmpty(type)) {
 					if ("2".equals(type)) {
@@ -2407,26 +2411,26 @@ public class UserController {
 				// 输出json对象
 				JSONArray array = new JSONArray();
 				JSONObject object = new JSONObject();
-				double useTotal = 0;
-				double totalNumber = 0;
+				//double useTotal = 0;
+				//double totalNumber = 0;
 				for (DdjJgd ddjOrder : list.getResult()) {
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("gdid", ddjOrder.getGdid());
 					jsonObject.put("totalPrices", ddjOrder.getTotalprice());
 					jsonObject.put("cssj", DateUtils.getLongDateStr(ddjOrder.getCssj()));
 
-					useTotal += ddjOrder.getTotalprice();
+					//useTotal += ddjOrder.getTotalprice();
 					int quantitytype = ddjOrder.getQuantitytype();
 					if (quantitytype == 1) {
-						totalNumber += Double.parseDouble(ddjOrder.getQuantity());
+						//totalNumber += Double.parseDouble(ddjOrder.getQuantity());
 					}
 					array.put(jsonObject);
 				}
 				object.put("list", array);
 				// 总价钱
-				object.put("total", useTotal + "");
+				//object.put("total", useTotal + "");
 				// 总重量
-				object.put("totalnumber", totalNumber + "");
+				//object.put("totalnumber", totalNumber + "");
 				commonResult.setResult(object);
 			} else {
 				commonResult.setCode(XboxUtils.STATUS_ERROR);
@@ -2446,36 +2450,49 @@ public class UserController {
 	
 	/**
 	 * 查询客户或者商家对<br/>
-	 * 某个客户或者商家的总未付款或者总未收款</br>
+	 * 某个客户或者商家的总未付款或者总未收款|总数量|总金额</br>
 	 * @param response
 	 * @param userid
 	 */
-	@RequestMapping("/getTotalUnClear.do")
-	public void getTotalUnClear(HttpServletResponse response, @RequestParam(value = "userid_kh", required = false) String userid_kh,@RequestParam(value = "userid_cj", required = false) String userid_cj){
+	@RequestMapping("/getTotalPayStat.do")
+	public void getTotalPayStat(HttpServletResponse response, @RequestParam(value = "userid_kh", required = false) String userid_kh,@RequestParam(value = "userid_sj", required = false) String userid_sj){
 		CommonResult commonResult = new CommonResult();
 		try {
-			if (StringUtils.isNotEmpty(userid_cj)&&StringUtils.isNotEmpty(userid_kh)) {
+			if (StringUtils.isNotEmpty(userid_sj)&&StringUtils.isNotEmpty(userid_kh)) {
 				DdjJgd queryJgd = new DdjJgd();
 				DdjZdb queryzdb = new DdjZdb();
 				queryJgd.setKhid(Long.valueOf(userid_kh));
 				queryzdb.setKhbh(Long.valueOf(userid_kh));
-				queryJgd.setCjid(Long.valueOf(userid_cj));
-				queryzdb.setCjbh(Long.valueOf(userid_cj));
+				queryJgd.setCjid(Long.valueOf(userid_sj));
+				queryzdb.setCjbh(Long.valueOf(userid_sj));
 				List<DdjJgd> jgdList=jgdService.getByValues(queryJgd);
 				// 输出json对象
 				JSONObject object = new JSONObject();
 				double useTotal = 0;
-				for (DdjJgd ddjOrder : jgdList) {
-					useTotal += ddjOrder.getTotalprice();
+				double totalNumber = 0;
+				if(null!=jgdList){
+					for (DdjJgd ddjOrder : jgdList) {
+						useTotal += ddjOrder.getTotalprice();
+						int quantitytype = ddjOrder.getQuantitytype();
+						if (quantitytype == 1) {
+							totalNumber += Double.parseDouble(ddjOrder.getQuantity());
+						}
+					}
 				}
 				double payTotal = 0;
 				List<DdjZdb> zdblist = zdbService.getByValues(queryzdb);
-				for(DdjZdb ddjZdb : zdblist){
-					payTotal+=ddjZdb.getPayprice();
+				if(null!=zdblist){
+					for(DdjZdb ddjZdb : zdblist){
+						payTotal+=ddjZdb.getPayprice();
+					}
 				}
 				// 总价钱
-				object.put("totalprice", (useTotal-payTotal) + "");
+				object.put("totalPrice", useTotal + "");
+				// 总未付款
+				object.put("totalNonPayment", (useTotal-payTotal) + "");
 				// 总重量
+				object.put("totalNumber",totalNumber + "");
+				
 				commonResult.setResult(object);
 			} else {
 				commonResult.setCode(XboxUtils.STATUS_ERROR);
@@ -2606,7 +2623,7 @@ public class UserController {
 					criteria.addCriterion(new Criterion(" cjbh = " + userid + " "));
 				}
 				criteria.addCriterion(new Criterion(" status = "+ status+"  "));
-				criteria.addCriterion(new Criterion(" creattime < now() "));
+				criteria.addCriterion(new Criterion(" createtime < now() "));
 				PageRequest pageRequest = new PageRequest();
 				// 设置分页查询参数
 				pageRequest.setPageSize(rows);
@@ -2614,21 +2631,24 @@ public class UserController {
 				pageRequest.getCriteria().addAll(criteria.getAllCriteria());
 				pageRequest.setOrderByClause(" order by createtime desc ");
 				Page<DdjZdb> list = zdbService.findPage(pageRequest);
+				
 				// 输出json对象
 				JSONArray array = new JSONArray();
 				JSONObject object = new JSONObject();
-				for (DdjZdb ddjzdb : list.getResult()) {
-					JSONObject jsonObject = new JSONObject();
-					jsonObject.put("zdid", ddjzdb.getId());
-					jsonObject.put("khbh", ddjzdb.getKhbh());
-					String khname = "";
-					DdjUser user = userService.getById("" + ddjzdb.getKhbh());
-					khname = user != null ? user.getUsername() : "";
-					jsonObject.put("khname", khname);
-					jsonObject.put("payprice", ddjzdb.getPayprice());
-					jsonObject.put("createtime", ddjzdb.getCreatetime());
-
-					array.put(jsonObject);
+				if(null!=list){
+					for (DdjZdb ddjzdb : list.getResult()) {
+						JSONObject jsonObject = new JSONObject();
+						jsonObject.put("zdid", ddjzdb.getId());
+						jsonObject.put("khbh", ddjzdb.getKhbh());
+						String khname = "";
+						DdjUser user = userService.getById("" + ddjzdb.getKhbh());
+						khname = user != null ? user.getUsername() : "";
+						jsonObject.put("khname", khname);
+						jsonObject.put("payprice", ddjzdb.getPayprice());
+						jsonObject.put("createtime", ddjzdb.getCreatetime());
+	
+						array.put(jsonObject);
+					}
 				}
 				object.put("list", array);
 				commonResult.setResult(object);

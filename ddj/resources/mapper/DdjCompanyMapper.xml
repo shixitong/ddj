@@ -293,6 +293,6 @@
      <select id="getJgdKhList" parameterType="Long" resultMap="BaseResultMap">
     	select * from ddj_company where companyid in 
     	(select companyid from ddj_user where userid in 
-    	(select cjid from ddj_jgd where cjid=#{useridCj,jdbcType=BIGINT}))
+    	(select khid from ddj_jgd where cjid=#{useridCj,jdbcType=BIGINT}))
     </select>
 </mapper>
