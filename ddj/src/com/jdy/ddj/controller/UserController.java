@@ -2623,7 +2623,7 @@ public class UserController {
 					criteria.addCriterion(new Criterion(" cjbh = " + userid + " "));
 				}
 				criteria.addCriterion(new Criterion(" status = "+ status+"  "));
-				criteria.addCriterion(new Criterion(" createtime < now() "));
+				criteria.addCriterion(new Criterion(" ( createtime < now() or createtime  =now() ) "));
 				PageRequest pageRequest = new PageRequest();
 				// 设置分页查询参数
 				pageRequest.setPageSize(rows);
@@ -2645,7 +2645,8 @@ public class UserController {
 						khname = user != null ? user.getUsername() : "";
 						jsonObject.put("khname", khname);
 						jsonObject.put("payprice", ddjzdb.getPayprice());
-						jsonObject.put("createtime", ddjzdb.getCreatetime());
+						jsonObject.put("paytype", ddjzdb.getPaytype());
+						jsonObject.put("createtime", DateUtils.getLongDateStr(ddjzdb.getCreatetime()));
 	
 						array.put(jsonObject);
 					}
