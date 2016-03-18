@@ -75,7 +75,7 @@ public class DdjJgdServiceImpl implements DdjJgdService {
 
 	@Override
 	public List<DdjJgd> getByValues(DdjJgd ddjjgd) {
-		return null;
+		return this.ddjjgdDao.getByValues(ddjjgd);
 	}
 
 	@Override

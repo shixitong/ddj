@@ -291,4 +291,19 @@
          order by cssj desc
   </select>
   
+   <select id="getByValues" parameterType="com.jdy.ddj.entity.DdjJgd" resultMap="BaseResultMap">
+        SELECT * FROM ddj_jgd
+        <where>
+       <if test="khid != null">
+       and  khid = #{khid,jdbcType=BIGINT}
+      </if>
+      <if test="cjid != null">
+       and  cjid = #{cjid,jdbcType=BIGINT}
+      </if>
+      <if test="status != null">
+      and   status = #{status,jdbcType=SMALLINT}
+      </if>
+      
+        </where>
+    </select>
 </mapper>

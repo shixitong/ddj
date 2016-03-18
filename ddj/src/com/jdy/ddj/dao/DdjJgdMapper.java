@@ -48,5 +48,7 @@ public interface DdjJgdMapper {
 	long count(@Param("requestBean")RequestBean requestBean);
 
 	List<DdjJgd> findPage(@Param("requestBean")RequestBean requestBean);
+
+	List<DdjJgd> getByValues(DdjJgd ddjjgd);
 	
 }
