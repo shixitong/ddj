@@ -1341,7 +1341,7 @@ public class UserController {
 					ddjjgd.setQuantitytype(
 							quantitytype != null && !"".equals(quantitytype) ? Integer.parseInt(quantitytype) : 1);
 					double totalprice = Arith
-							.mul((null != quantity && !quantity.equals("") ? Integer.parseInt(quantity) : 0), price);
+							.mul(((null != quantity && !quantity.equals("")) ? Integer.parseInt(quantity) : 0), price);
 					ddjjgd.setTotalprice(totalprice);
 					ddjjgd.setPhotos(photos);
 					ddjjgd.setStatus(1);
@@ -2417,6 +2417,9 @@ public class UserController {
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("gdid", ddjOrder.getGdid());
 					jsonObject.put("totalPrices", ddjOrder.getTotalprice());
+					jsonObject.put("price", ddjOrder.getPrice());
+					jsonObject.put("quantity", ddjOrder.getQuantity());
+					jsonObject.put("quantitytype", ddjOrder.getQuantitytype());
 					jsonObject.put("cssj", DateUtils.getLongDateStr(ddjOrder.getCssj()));
 
 					//useTotal += ddjOrder.getTotalprice();
