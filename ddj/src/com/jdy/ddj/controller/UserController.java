@@ -2176,7 +2176,7 @@ public class UserController {
 			sjkhck.setSjbh(Long.valueOf(userid));
 			List<DdjSjKhck> sjkhckList = sjkhckService.getByValues(sjkhck);
 			for (int i = 0; i < sjkhckList.size(); i++) {
-				// sjkhckService.deleteById(sjkhckList.get(i));
+				sjkhckService.deleteById(sjkhckList.get(i));
 			}
 			// 把状态改变
 			DdjUser user = userService.getById(userid + "");
