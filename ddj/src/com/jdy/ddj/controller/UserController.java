@@ -2478,7 +2478,10 @@ public class UserController {
 						useTotal += ddjOrder.getTotalprice();
 						int quantitytype = ddjOrder.getQuantitytype();
 						if (quantitytype == 1) {
-							totalNumber += Double.parseDouble(ddjOrder.getQuantity());
+							if(null!=ddjOrder.getQuantity()&&!ddjOrder.getQuantity().equals("")){
+								totalNumber += Double.parseDouble(ddjOrder.getQuantity());
+							}
+							
 						}
 					}
 				}

@@ -23,7 +23,7 @@ public class ClassMain {
 
 
 
-		String smrz4 = ClassMain.sendPost("http://120.55.97.176:8899/ddj/order/getDetail.do",
+		String smrz4 = ClassMain.sendPost("http://:8899/ddj/order/getDetail.do",
                 "gdid=JGD12031415501300000&usertype=5");
 		System.out.println(smrz4);
 		
