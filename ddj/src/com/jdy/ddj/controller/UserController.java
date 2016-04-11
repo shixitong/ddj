@@ -1340,8 +1340,12 @@ public class UserController {
 					ddjjgd.setQuantity(quantity);
 					ddjjgd.setQuantitytype(
 							quantitytype != null && !"".equals(quantitytype) ? Integer.parseInt(quantitytype) : 1);
-					double totalprice = Arith
-							.mul(((null != quantity && !quantity.equals("")) ? Integer.parseInt(quantity) : 0), price);
+					int quantity_int=0;
+					if(null!=quantity&&!quantity.equals("")){
+						quantity_int=Integer.parseInt(quantity);
+					}
+					double totalprice = Arith.mul(quantity_int, price);
+					logger.error("该账单的总价格为"+totalprice+",数量为"+quantity_int+",单价为"+price);
 					ddjjgd.setTotalprice(totalprice);
 					ddjjgd.setPhotos(photos);
 					ddjjgd.setStatus(1);
