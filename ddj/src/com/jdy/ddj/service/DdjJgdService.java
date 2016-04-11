@@ -1,6 +1,7 @@
 package com.jdy.ddj.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jdy.ddj.common.orm.Page;
 import com.jdy.ddj.common.orm.PageRequest;
@@ -59,6 +60,8 @@ public interface DdjJgdService {
 	 * 根据不为空的字段查询
      */
     List<DdjJgd> getByValues(DdjJgd ddjjgd);
+    
+    List<Map> getTotalStat(DdjJgd ddjjgd);
 
     /**
      * @param ddjjgd 

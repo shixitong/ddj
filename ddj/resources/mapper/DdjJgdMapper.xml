@@ -306,4 +306,12 @@
       
         </where>
     </select>
+    
+    <select id="getTotalStat" parameterType="com.jdy.ddj.entity.DdjJgd" resultType="java.util.Map">
+      select gdid,(select price from ddj_jgd where gdid=ddj_jgd_jchxq.gdid ) as price,userid,sum(quantity) as quantity from ddj_jgd_jchxq 
+		where usertype=4 and jchdetail in (6,7)
+		and gdid in (select gdid from ddj_jgd where khid=#{khid,jdbcType=BIGINT}  and   cjid = #{cjid,jdbcType=BIGINT} and status=7)
+		group by gdid,userid
+		order by qrtime desc
+    </select>
 </mapper>

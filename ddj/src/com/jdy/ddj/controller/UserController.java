@@ -1782,7 +1782,7 @@ public class UserController {
 	 * @param response
 	 * @param ddjjchxq
 	 */
-	@RequestMapping("/order/addDetail.do")
+	@RequestMapping("/order/.do")
 	public void addDetail(HttpServletResponse response, DdjJgdJchxq ddjjchxq, String allsh) {
 		CommonResult commonResult = new CommonResult();
 		JSONObject result = commonResult.getJsonObject();
@@ -2458,6 +2458,7 @@ public class UserController {
 	/**
 	 * 查询客户或者商家对<br/>
 	 * 某个客户或者商家的总未付款或者总未收款|总数量|总金额</br>
+	 * 
 	 * @param response
 	 * @param userid
 	 */
@@ -2468,26 +2469,25 @@ public class UserController {
 			if (StringUtils.isNotEmpty(userid_sj)&&StringUtils.isNotEmpty(userid_kh)) {
 				DdjJgd queryJgd = new DdjJgd();
 				DdjZdb queryzdb = new DdjZdb();
+				queryJgd.setStatus(7);
+				queryzdb.setStatus((short)1);
 				queryJgd.setKhid(Long.valueOf(userid_kh));
 				queryzdb.setKhbh(Long.valueOf(userid_kh));
 				queryJgd.setCjid(Long.valueOf(userid_sj));
 				queryzdb.setCjbh(Long.valueOf(userid_sj));
-				List<DdjJgd> jgdList=jgdService.getByValues(queryJgd);
+				List<Map> jgdList=jgdService.getTotalStat(queryJgd);
 				// 输出json对象
 				JSONObject object = new JSONObject();
 				double useTotal = 0;
 				double totalNumber = 0;
 				if(null!=jgdList){
-					for (DdjJgd ddjOrder : jgdList) {
-						useTotal += ddjOrder.getTotalprice();
-						int quantitytype = ddjOrder.getQuantitytype();
-						if (quantitytype == 1) {
-							if(null!=ddjOrder.getQuantity()&&!ddjOrder.getQuantity().equals("")){
-								totalNumber += Double.parseDouble(ddjOrder.getQuantity());
-							}
+					for (Map ddjOrder : jgdList) {
+						double price = (double)ddjOrder.get("price");
+						double quantity = (double)ddjOrder.get("quantity");
+						useTotal+=Arith.mul(price, quantity);
+						totalNumber += quantity;
 							
 						}
-					}
 				}
 				double payTotal = 0;
 				List<DdjZdb> zdblist = zdbService.getByValues(queryzdb);

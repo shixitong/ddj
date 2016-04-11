@@ -2,6 +2,7 @@ package com.jdy.ddj.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,6 +99,11 @@ public class DdjJgdServiceImpl implements DdjJgdService {
 	@Override
 	public void deleteByIds(List<String> ids) {
 
+	}
+
+	@Override
+	public List<Map> getTotalStat(DdjJgd ddjjgd) {
+		return ddjjgdDao.getTotalStat(ddjjgd);
 	}
 
 }

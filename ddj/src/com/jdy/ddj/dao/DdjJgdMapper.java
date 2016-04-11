@@ -1,6 +1,7 @@
 package com.jdy.ddj.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -50,5 +51,7 @@ public interface DdjJgdMapper {
 	List<DdjJgd> findPage(@Param("requestBean")RequestBean requestBean);
 
 	List<DdjJgd> getByValues(DdjJgd ddjjgd);
+	
+	List<Map> getTotalStat(DdjJgd ddjjgd);
 	
 }
