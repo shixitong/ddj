@@ -1782,7 +1782,7 @@ public class UserController {
 	 * @param response
 	 * @param ddjjchxq
 	 */
-	@RequestMapping("/order/.do")
+	@RequestMapping("/order/addDetail.do")
 	public void addDetail(HttpServletResponse response, DdjJgdJchxq ddjjchxq, String allsh) {
 		CommonResult commonResult = new CommonResult();
 		JSONObject result = commonResult.getJsonObject();
