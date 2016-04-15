@@ -2626,10 +2626,10 @@ public class UserController {
 				Criteria criteria = new Criteria();
 				DdjUser quser = userService.getById(userid);
 				
-				if(quser.getUsertype().equals("1")){
+				if(quser.getUsertype().shortValue()==1){
 					criteria.addCriterion(new Criterion(" khbh = " + userid + " "));
 				}
-				if(quser.getUsertype().equals("2")){
+				if(quser.getUsertype().shortValue()==2){
 					criteria.addCriterion(new Criterion(" cjbh = " + userid + " "));
 				}
 				criteria.addCriterion(new Criterion(" status = "+ status+"  "));
