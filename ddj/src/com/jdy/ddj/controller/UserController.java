@@ -2394,9 +2394,9 @@ public class UserController {
 				//criteria.addCriterion(new Criterion(" cssj < now() "));
 				if (StringUtils.isNotEmpty(type)) {
 					if ("2".equals(type)) {
-						criteria.addCriterion(new Criterion("status <> '6' "));
+						criteria.addCriterion(new Criterion("status <> '7' "));
 					} else if ("3".equals(type)) {
-						criteria.addCriterion(new Criterion("status =  '6' "));
+						criteria.addCriterion(new Criterion("status =  '7' "));
 					}
 				}
 				if (StringUtils.isNotEmpty(year)) {
@@ -2417,10 +2417,16 @@ public class UserController {
 				JSONObject object = new JSONObject();
 				//double useTotal = 0;
 				//double totalNumber = 0;
+				DdjJgd queryJgd = new DdjJgd();
+				queryJgd.setStatus(7);
+				queryJgd.setKhid(Long.valueOf(userid));
+				queryJgd.setCjid(Long.valueOf(userid_sj));
+				List<Map> jgdList=jgdService.getTotalStat(queryJgd);
+				Map jgdMap = converListToMap(jgdList);
 				for (DdjJgd ddjOrder : list.getResult()) {
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("gdid", ddjOrder.getGdid());
-					jsonObject.put("totalPrices", ddjOrder.getTotalprice());
+					jsonObject.put("totalPrices", jgdMap.get(ddjOrder.getGdid()));
 					jsonObject.put("price", ddjOrder.getPrice());
 					jsonObject.put("quantity", ddjOrder.getQuantity());
 					jsonObject.put("quantitytype", ddjOrder.getQuantitytype());
@@ -2453,6 +2459,22 @@ public class UserController {
 		}
 	}
 	
+	
+	private Map converListToMap(List<Map> jgdList){
+		Map map = new HashMap();
+		if(null!=jgdList){
+			for (Map ddjOrder : jgdList) {
+				String gdid = (String) ddjOrder.get("gdid");
+				double price = (double)ddjOrder.get("price");
+				double quantity = (double)ddjOrder.get("quantity");
+				map.put(gdid, Arith.mul(price, quantity));
+					
+				}
+		}
+		return map;
+		
+		
+	}
 	
 	
 	/**
